@@ -8,6 +8,9 @@ function users (app) {
 
 	// INDEX => SHOW ALL USERS
 	app.get('/', (req, res) => {
+		res.render('users-index', {
+			msg: 'Handlebars are Cool!'
+		})
 		// // USERDB DOESNT EXIST
 		// userdb.miscNowPlayingUsers()
 		// .then(response => {
