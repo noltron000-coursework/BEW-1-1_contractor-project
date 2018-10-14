@@ -1,21 +1,21 @@
 <fieldset>
-	<legend>Edit Article for {{movie.title}}</legend>
+	<legend>Edit Article for {{user.title}}</legend>
 	<!-- TITLE -->
 	<div class="form-group">
 		<label for="article-title">Title</label><br>
 		<input class="form-control" id="article-title" type="text" name="title" value="{{article.title}}" />
 	</div>
 
-	<!-- MOVIE TITLE -->
+	<!-- USER NAME -->
 	<div class="form-group">
-		<label for="movie-title">Movie Title</label><br>
-		<input class="form-control" id="movie-title" type="text" name="movieTitle" value="{{article.movieTitle}}" />
+		<label for="user-name">User Name</label><br>
+		<input class="form-control" id="user-name" type="text" name="userName" value="{{article.userName}}" />
 	</div>
 
-	<!-- MOVIE RATING -->
+	<!-- USER RATING -->
 	<div class="form-group">
-		<label for="movie-rating">Movie Rating</label><br>
-		<select class="form-control" id="movie-rating" type="" name="movieRating" value="{{article.movieRating}}" />
+		<label for="user-rating">User Rating</label><br>
+		<select class="form-control" id="user-rating" type="" name="userRating" value="{{article.userRating}}" />
 			<option value="N/A">- Not Any -</option>
 			<option value="0">0: ☆☆☆☆☆</option>
 			<option value="1">1: ★☆☆☆☆</option>

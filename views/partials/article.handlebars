@@ -1,12 +1,12 @@
 <div>
 	<h4>
-		<a href="/movies/{{this.movieId}}/articles/{{this._id}}">
+		<a href="/users/{{this.userId}}/articles/{{this._id}}">
 			TITLE: {{this.title}}
 		</a>
 	</h4>
 
 	<h4>
-		MOVIE: {{this.movieTitle}}
+		USER: {{this.userName}}
 	</h4>
 
 	<h4>
@@ -17,7 +17,7 @@
 			<p>
 				<button type="submit">Delete</button>
 				<button type="button" onclick="window.location.href='/articles/{{this._id}}/edit'">Edit</button>
-				<button type="button" onclick="window.location.href='/movies/{{this.movieId}}'">Back</button>
+				<button type="button" onclick="window.location.href='/users/{{this.userId}}'">Back</button>
 			</p>
 		</form>
 	</p>

@@ -1,0 +1,101 @@
+Searching 2841 files for "movie"\
+
+/Users/nolansmac/Documents/Google Drive/Dev/courses/bew_1-1/contractor-project/controllers/articles.js:
+    3: const MovieDB = require('moviedb-promise');
+    4: const moviedb = new MovieDB('3a1d8db55135a8ae41b2314190591157');
+    8: 	// // COMMENTING OUT ARTICLES LANDING - SHOULD BE MOVIES LANDING
+   21: 	// == movie route ==
+   22: 	// /movies/:id/articles/new
+   23: 	app.get('/movies/:movieId/articles/new', (req, res) => {
+   24: 		const movie = moviedb.movieInfo( req.params.movieId )
+   25: 		.then( movie => {
+   26: 			res.render('articles-new', { movieId: req.params.movieId, movie: movie }) //RES render?
+   31: 	// == movie route ==
+   32: 	// /movies/:id/articles/:id
+   33: 	app.get('/movies/:movieId/articles/:id', (req, res) => {
+   45: 	// == movie route ==
+   46: 	// /movies/:id/articles/:id
+   50: 			res.redirect(`/movies/${article.movieId}/articles/${article._id}`)
+   57: 	// == movie route ==
+   58: 	// /movies/:id/articles/:id/edit
+   66: 	// == movie route ==
+   67: 	// /movies/:id/articles/new
+   68: 	app.post('/movies/:movieId/articles', (req, res) => {
+   72: 			res.redirect(`/movies/${article.movieId}/articles/${article._id}`) // Redirect to articles/:id
+   80: 	// == movie route ==
+   81: 	// /movies/:id/articles/:id
+   89: 				res.redirect(`/movies/${article.movieId}`);
+
+/Users/nolansmac/Documents/Google Drive/Dev/courses/bew_1-1/contractor-project/controllers/movies.js:
+    3: const MovieDB = require('moviedb-promise');
+    4: const moviedb = new MovieDB('3a1d8db55135a8ae41b2314190591157');
+    6: function movies (app) {
+    8: 	// INDEX => SHOW ALL MOVIES
+   10: 		moviedb.miscNowPlayingMovies()
+   12: 			res.render('movies-index', {
+   13: 				movies: response.results
+   21: 	// NEW => SHOW MOVIE CREATION FORM
+   22: 	// There is no need to create new movies!
+   26: 	app.get('/movies/:id', (req, res) => {
+   27: 		moviedb.movieInfo({ id: req.params.id }).then(movie => {
+   28: 			Article.find({ movieId: req.params.id }).then(articles => {
+   29: 				res.render('movies-show', { movie: movie, articles: articles });
+   35: 	// SHOW SINGLE MOVIE
+   36: 	app.get('/movies/:id', (req, res) => {
+   37: 		moviedb.movieInfo({
+   39: 		}).then(movie => {
+   40: 			// if (movie.video) {
+   41: 				moviedb.movieVideos({
+   44: 					movie.trailer_youtube_id = videos.results[0].key;
+   45: 					renderTemplate(movie);
+   47: 			function renderTemplate(movie) {
+   49: 					movieId: req.params.id
+   51: 					res.render('movies-show', {
+   52: 						movie: movie,
+   62: module.exports = movies
+
+/Users/nolansmac/Documents/Google Drive/Dev/courses/bew_1-1/contractor-project/models/article.js:
+    8: 	movieTitle: String,
+    9: 	movieRating: String,
+   11: 	movieId: { type: String, required: true }
+
+/Users/nolansmac/Documents/Google Drive/Dev/courses/bew_1-1/contractor-project/views/articles-index.handlebars:
+    9: 			<p>Title: {{this.movieTitle}}</p>
+
+/Users/nolansmac/Documents/Google Drive/Dev/courses/bew_1-1/contractor-project/views/articles-new.handlebars:
+    5: 		<form method="POST" action="/movies/{{movieId}}/articles">
+   10: 				<input type="hidden" name="movieId" value="{{movieId}}">
+
+/Users/nolansmac/Documents/Google Drive/Dev/courses/bew_1-1/contractor-project/views/articles-show.handlebars:
+    6: 		<h2>TITLE: {{article.movieTitle}}</h2>
+    7: 		<h3>RATING: {{article.movieRating}}</h3>
+    9: 		<p class="card-movie">ID: {{article.movieId}}</p>
+   17: 		<button type="button" onclick="window.location.href='/movies/{{article.movieId}}'">Back</button>
+
+/Users/nolansmac/Documents/Google Drive/Dev/courses/bew_1-1/contractor-project/views/movies-index.handlebars:
+    6: 		{{#each movies}}
+    8: 				<a href="/movies/{{this.id}}">
+
+/Users/nolansmac/Documents/Google Drive/Dev/courses/bew_1-1/contractor-project/views/movies-show.handlebars:
+    1: <!-- movies-show.handlebars -->
+    3: 	<a href="/movies/{{movie.id}}/articles/new" class="btn btn-primary">Write Article</a>
+    8: 		<img class="img-responsive" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}"/>
+   12: 		<h1>{{movie.title}}</h1>
+   13: 		<p class="lead">{{movie.overview}}</p>
+   19: 		<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{movie.trailer_youtube_id}}?rel=0"></iframe>
+
+/Users/nolansmac/Documents/Google Drive/Dev/courses/bew_1-1/contractor-project/views/partials/article.handlebars:
+    3: 		<a href="/movies/{{this.movieId}}/articles/{{this._id}}">
+    9: 		MOVIE: {{this.movieTitle}}
+   20: 				<button type="button" onclick="window.location.href='/movies/{{this.movieId}}'">Back</button>
+
+/Users/nolansmac/Documents/Google Drive/Dev/courses/bew_1-1/contractor-project/views/partials/articles-form.handlebars:
+    2: 	<legend>Edit Article for {{movie.title}}</legend>
+    9: 	<!-- MOVIE TITLE -->
+   11: 		<label for="movie-title">Movie Title</label><br>
+   12: 		<input class="form-control" id="movie-title" type="text" name="movieTitle" value="{{article.movieTitle}}" />
+   15: 	<!-- MOVIE RATING -->
+   17: 		<label for="movie-rating">Movie Rating</label><br>
+   18: 		<select class="form-control" id="movie-rating" type="" name="movieRating" value="{{article.movieRating}}" />
+
+359 matches across 31 files

@@ -1,0 +1,30 @@
+<!-- users-show.handlebars -->
+<div class="text-right">
+	<a href="/users/{{user.id}}/articles/new" class="btn btn-primary">Write Article</a>
+</div>
+
+<div class="row">
+	<div class="col-sm-4">
+		<img class="img-responsive" src="https://image.tmdb.org/t/p/w500{{user.poster_path}}"/>
+	</div>
+
+	<div class="col-sm-8">
+		<h1>{{user.title}}</h1>
+		<p class="lead">{{user.overview}}</p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="embed-responsive embed-responsive-16by9 col-sm-12">
+		<iframe class="embed-responsive-item" src="https://www.youtube.com/embed/{{user.trailer_youtube_id}}?rel=0"></iframe>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		<h3>Articles</h3>
+		{{#each articles}}
+			{{> article}}
+		{{/each}}
+	</div>
+</div>

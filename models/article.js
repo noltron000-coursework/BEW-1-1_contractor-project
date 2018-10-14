@@ -5,10 +5,10 @@ const app = express(); // include express.js stuff... adding dots after app (eg 
 
 const Article = mongoose.model('Article', {
 	title: String,
-	movieTitle: String,
-	movieRating: String,
+	userName: String,
+	userRating: String,
 	description: String,
-	movieId: { type: String, required: true }
+	userId: { type: String, required: true }
 }); // mongoose is defining the data-fields
 
 module.exports = Article;

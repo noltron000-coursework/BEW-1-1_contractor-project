@@ -3,7 +3,7 @@ const Article = require('./models/article');
 const Comment = require('./models/comment');
 
 const articles = require('./controllers/articles'); // initialize articles
-const movies = require('./controllers/movies'); // initialize movies
+const users = require('./controllers/users'); // initialize users
 const admin = require('./controllers/admin'); //initialize admin
 
 const mongoose = require('mongoose'); // once was const or var...let is used
@@ -34,7 +34,7 @@ app.use(methodOverride('_method'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // ROUTES
-movies(app);
+users(app);
 articles(app);
 admin(app);
 require('./controllers/comments')(app);
