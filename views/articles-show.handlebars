@@ -1,0 +1,28 @@
+<!-- views/articles-show.handlebars -->
+
+<div class="row">
+	<div class="col-sm-6 col-sm-offset-3">
+		<h1>ARTICLE: {{article.title}}</h1>
+		<h2>TITLE: {{article.movieTitle}}</h2>
+		<h3>RATING: {{article.movieRating}}</h3>
+		<p>DESCRIPTION: {{article.description}}</p>
+		<p class="card-movie">ID: {{article.movieId}}</p>
+
+		<form method="POST" action="/articles/{{article._id}}?_method=DELETE">
+			<p>
+				<button type="submit">Delete</button>
+			</p>
+		</form>
+		<button type="button" onclick="window.location.href='/articles/{{article._id}}/edit'">Edit</button>
+		<button type="button" onclick="window.location.href='/movies/{{article.movieId}}'">Back</button>
+		<hr />
+		{{> comment-form}}
+		<hr />
+		<div id="comments">
+			{{#each comments}}
+				{{> comment}}
+			{{/each}}
+		</div>
+	</div>
+</div>
+

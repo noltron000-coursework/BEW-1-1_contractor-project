@@ -1,11 +1,11 @@
-<!-- views/reviews-new.handlebars -->
+<!-- views/articles-new.handlebars -->
 
 <div class="row">
 	<div class="col-sm-6 col-sm-offset-3">
-		<form method="POST" action="/movies/{{movieId}}/reviews">
-			{{> reviews-form}}
+		<form method="POST" action="/movies/{{movieId}}/articles">
+			{{> articles-form}}
 			<div class="form-group">
-				<button type="submit" class="btn btn-primary">Save Review</button>
+				<button type="submit" class="btn btn-primary">Save Article</button>
 				<button type="button" onclick="window.location.href='/'">Cancel</button>
 				<input type="hidden" name="movieId" value="{{movieId}}">
 			</div>

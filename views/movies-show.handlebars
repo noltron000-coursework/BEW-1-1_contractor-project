@@ -1,6 +1,6 @@
 <!-- movies-show.handlebars -->
 <div class="text-right">
-	<a href="/movies/{{movie.id}}/reviews/new" class="btn btn-primary">Write Review</a>
+	<a href="/movies/{{movie.id}}/articles/new" class="btn btn-primary">Write Article</a>
 </div>
 
 <div class="row">
@@ -22,9 +22,9 @@
 
 <div class="row">
 	<div class="col-sm-12">
-		<h3>Reviews</h3>
-		{{#each reviews}}
-			{{> review}}
+		<h3>Articles</h3>
+		{{#each articles}}
+			{{> article}}
 		{{/each}}
 	</div>
 </div>

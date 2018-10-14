@@ -1,21 +1,21 @@
 <fieldset>
-	<legend>Edit Review for {{movie.title}}</legend>
+	<legend>Edit Article for {{movie.title}}</legend>
 	<!-- TITLE -->
 	<div class="form-group">
-		<label for="review-title">Title</label><br>
-		<input class="form-control" id="review-title" type="text" name="title" value="{{review.title}}" />
+		<label for="article-title">Title</label><br>
+		<input class="form-control" id="article-title" type="text" name="title" value="{{article.title}}" />
 	</div>
 
 	<!-- MOVIE TITLE -->
 	<div class="form-group">
 		<label for="movie-title">Movie Title</label><br>
-		<input class="form-control" id="movie-title" type="text" name="movieTitle" value="{{review.movieTitle}}" />
+		<input class="form-control" id="movie-title" type="text" name="movieTitle" value="{{article.movieTitle}}" />
 	</div>
 
 	<!-- MOVIE RATING -->
 	<div class="form-group">
 		<label for="movie-rating">Movie Rating</label><br>
-		<select class="form-control" id="movie-rating" type="" name="movieRating" value="{{review.movieRating}}" />
+		<select class="form-control" id="movie-rating" type="" name="movieRating" value="{{article.movieRating}}" />
 			<option value="N/A">- Not Any -</option>
 			<option value="0">0: ☆☆☆☆☆</option>
 			<option value="1">1: ★☆☆☆☆</option>
@@ -28,7 +28,7 @@
 
 	<!-- DESCRIPTION -->
 	<div class="form-group">
-		<label for="review-description">Description</label><br>
-		<textarea class="form-control"id="review-description" name="description" rows="10">{{review.description}}</textarea>
+		<label for="article-description">Description</label><br>
+		<textarea class="form-control"id="article-description" name="description" rows="10">{{article.description}}</textarea>
 	</div>
 </fieldset>

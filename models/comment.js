@@ -8,7 +8,7 @@ const Schema = mongoose.Schema;
 const Comment = mongoose.model('Comment', {
 	title: String,
 	content: String,
-	reviewId: { type: Schema.Types.ObjectId, ref: 'Review' }
+	articleId: { type: Schema.Types.ObjectId, ref: 'Article' }
 });
 
 module.exports = Comment;

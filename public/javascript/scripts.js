@@ -20,7 +20,7 @@ function deleteComment() {
 		console.log(commentId);
 
 			// call axios.delete()
-		axios.delete(`/reviews/comments/${commentId}`)
+		axios.delete(`/articles/comments/${commentId}`)
 		.then(response => {
 			console.log("'RESPONSE' OF DELETE FUNCTION:");
 			console.log(response);
@@ -75,7 +75,7 @@ window.onload = function() {
 		// }
 
 			// use axios to initialize a post request and send
-		axios.post('/reviews/comments', comment)
+		axios.post('/articles/comments', comment)
 		.then(function (response) {
 
 				// wait for the success response from the server

@@ -3,7 +3,7 @@ const Comment = require('../models/comment');
 module.exports = function(app) {
 
 	// CREATE Comment
-	app.post('/reviews/comments', (req, res) => {
+	app.post('/articles/comments', (req, res) => {
 		console.log("CREATE comment");
 		Comment.create(req.body)
 		.then(comment => {
@@ -16,7 +16,7 @@ module.exports = function(app) {
 	});
 
 	// DELETE
-	app.delete('/reviews/comments/:id', function (req, res) {
+	app.delete('/articles/comments/:id', function (req, res) {
 		console.log("DELETE comment");
 		Comment.findByIdAndRemove(req.params.id)
 		.then(comment => {
@@ -29,27 +29,3 @@ module.exports = function(app) {
 		});
 	});
 };
-
-
-// // OLD Vanilla Routes (no AJAX)
-// // CREATE Comment
-// app.post('/reviews/comments', (req, res) => {
-// 	Comment.create(req.body)
-// 	.then(comment => {
-// 		res.redirect(`/movies/${comment.movieId}/reviews/${comment.reviewId}`);
-// 		////// !!! Comment.MovieId invalid form...creates undefined !!! \\\\\\\
-// 	}).catch((err) => {
-// 		console.log(err.message);
-// 	});
-// });
-
-// // DELETE Comment
-// app.delete('/reviews/comments/:id', function (req, res) {
-// 	console.log("DELETE comment")
-// 	Comment.findByIdAndRemove(req.params.id)
-// 	.then((comment) => {
-// 		res.redirect(`/reviews/${comment.reviewId}`);
-// 	}).catch((err) => {
-// 		console.log(err.message);
-// 	});
-// });

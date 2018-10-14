@@ -1,12 +1,12 @@
-const Review = require('../models/review')
+const Article = require('../models/article')
 
 module.exports = function(app) {
 
 	// NEW Comment
 	app.get('/admin', (req, res) => {
-		Review.find()
-		.then(reviews => {
-			res.render('admin', { reviews: reviews });
+		Article.find()
+		.then(articles => {
+			res.render('admin', { articles: articles });
 		}).catch(error => {
 			console.log(error);
 		});

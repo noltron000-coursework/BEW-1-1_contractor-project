@@ -1,4 +1,4 @@
-<h2>Reviews</h2>
+<h2>Articles</h2>
 <table class="table">
 	<thead>
 		<tr>
@@ -9,14 +9,14 @@
 		</tr>
 	</thead>
 	<tbody>
-		{{#each reviews}}
+		{{#each articles}}
 			<tr>
 				<th scope="row">{{this._id}}</th>
 				<td>{{this.title}}</td>
 				<td>{{this.description}}</td>
 				<td>
-					<form method="POST" action="/reviews/{{this._id}}?_method=DELETE">
-						<button type="submit" class="btn" href="#" id="deleteReview" data-review-id=${this._id}>Delete</button>
+					<form method="POST" action="/articles/{{this._id}}?_method=DELETE">
+						<button type="submit" class="btn" href="#" id="deleteArticle" data-article-id=${this._id}>Delete</button>
 						<input type="hidden" value="true" name="admin"/>
 					</form>
 				</td>

@@ -1,4 +1,4 @@
-const Review = require('../models/review');
+const Article = require('../models/article');
 const Comment = require('../models/comment');
 const MovieDB = require('moviedb-promise');
 const moviedb = new MovieDB('3a1d8db55135a8ae41b2314190591157');
@@ -21,21 +21,12 @@ function movies (app) {
 	// NEW => SHOW MOVIE CREATION FORM
 	// There is no need to create new movies!
 
+
 	// SHOW ROUTE? ADDING BEFORE SHOW SINGLE. IT WORKS. MK!
 	app.get('/movies/:id', (req, res) => {
 		moviedb.movieInfo({ id: req.params.id }).then(movie => {
-			Review.find({ movieId: req.params.id }).then(reviews => {
-				// // AUTO POPULATE MONGOOSE
-				// // FERDINAND
-				// console.log(reviews);
-				// for (var review in reviews) {
-				// 	Comment.find({}).then(comments => {
-				// 		review.comments = comments;
-				// 		console.log(review._id);
-				// 		console.log(comments);
-				// 	}).catch(console.error)
-				// }
-				res.render('movies-show', { movie: movie, reviews: reviews });
+			Article.find({ movieId: req.params.id }).then(articles => {
+				res.render('movies-show', { movie: movie, articles: articles });
 			})
 		}).catch(console.error)
 	})
@@ -54,30 +45,17 @@ function movies (app) {
 					renderTemplate(movie);
 				});
 			function renderTemplate(movie) {
-				Review.find({
+				Article.find({
 					movieId: req.params.id
-				}).then(reviews => {
+				}).then(articles => {
 					res.render('movies-show', {
 						movie: movie,
-						reviews: reviews
+						articles: articles
 					});
 				});
 			}
 		}).catch(console.error);
 	})
-
-
-	// UPDATE MOVIE
-	// There is no need to update movies!
-
-	// EDIT MOVIE
-	// There is no need to edit movies!
-
-	// CREATE MOVIE
-	// There is no need to create movies!
-
-	// DELETE MOVIE
-	// There is no need to delete movies!
 }
 
 
