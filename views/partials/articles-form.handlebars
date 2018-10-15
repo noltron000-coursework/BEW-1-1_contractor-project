@@ -1,7 +1,10 @@
+
+		<p>a: {{article}}<br>
+		u: {{user}} {{article.user}}</p>
 <!-- USERNAME -->
 <div class="form-group">
 	<label for="user-name">Author</label><br>
-	<input disabled class="form-control" id="user-name" type="text" name="userName" value="{{user.userName}}" />
+	<input readonly class="form-control" id="user-name" type="text" name="userName" value="{{user.userName}}{{article.userName}}" />
 </div>
 
 <!-- TITLE -->

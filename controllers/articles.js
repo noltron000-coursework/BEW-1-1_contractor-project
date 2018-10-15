@@ -6,7 +6,6 @@ function articles (app) {
 
 	// UNECCESSARY ROUTE!
 	// INDEX => SHOW ALL ARTICLES
-	app.get
 
 	// COMPLETED!
 	// NEW => SHOW ARTICLE CREATION FORM
@@ -43,13 +42,14 @@ function articles (app) {
 
 	// WORK IN PROGRESS...
 	// UPDATE SINGLE ARTICLE
-	// /users/:id/articles/:id
-	app.put('users/:userId/articles/:id', (req, res) => {
+	app.put('/users/:userId/articles/:id', (req, res) => {
 		Article.findByIdAndUpdate(req.params.id, req.body)
 		.then(article => {
-			res.redirect(`/users/${article.userId}/articles/${article._id}`)
+			res.redirect(`/users/${article.userId}/articles/${article.id}`);
 		}).catch(err => {
-			console.log("Update Article" + err.message)
+			console.log("Update Article" + err.message);
+			res.status(400)
+			.send({ err: err });
 		})
 	})
 
@@ -58,10 +58,20 @@ function articles (app) {
 	// == user route ==
 	// /users/:id/articles/:id/edit
 	app.get('/articles/:id/edit', function (req, res) {
-		Article.findById(req.params.id, function(err, article) {
-			res.render('articles-edit', {article: article});
+		Article.findById(req.params.id)
+		.then(article => {
+			User.findById(req.params.userId)
+			.then(user => {
+				res.render('articles-edit', {
+					article: article,
+					user: user,
+					userId: req.params.userId
+				});
+			});
+		}).catch((err) => {
+			console.log("Create Article Error " + err.message)
 		})
-	})
+	});
 
 	// CREATE ARTICLE
 	// == user route ==

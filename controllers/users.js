@@ -34,7 +34,7 @@ function users (app) {
 	});
 
 	// COMPLETED!
-	// SHOW USER
+	// SHOW SINGLE USER
 	app.get('/users/:userId', (req, res) => {
 		User.findById(req.params.userId)
 		.then(user => {
