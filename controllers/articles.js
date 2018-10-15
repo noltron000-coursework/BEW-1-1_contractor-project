@@ -5,19 +5,26 @@ const Comment = require('../models/comment');
 // const UserDB = require('userdb-promise');
 // const userdb = new UserDB('3a1d8db55135a8ae41b2314190591157');
 
-function articles (app) {
-	// // INDEX => SHOW ALL ARTICLE
-	// // COMMENTING OUT ARTICLES LANDING - SHOULD BE USERS LANDING
-	// app.get('/articles', (req, res) => {
-	// 	res.render('articles-index');
-	// 	Article.find()
-	// 	.then(articles => {
-	// 		res.render('articles-index', { articles: articles });
-	// 	})
-	// 	.catch(err => {
-	// 		console.log(err);
-	// 	})
-	// })
+
+
+function articles (app) {// OUR MOCK ARRAY OF PROJECTS
+let reviews = [
+  { title: "Great Review", movieTitle: "Batman II" },
+  { title: "Awesome Movie", movieTitle: "Titanic" }
+]
+	// INDEX => SHOW ALL ARTICLE
+	// COMMENTING OUT ARTICLES LANDING - SHOULD BE USERS LANDING
+	app.get('/articles', (req, res) => {
+		res.render('articles-index', { reviews: reviews });
+		// res.render('articles-index');
+		// Article.find()
+		// .then(articles => {
+		// 	res.render('articles-index', { articles: articles });
+		// })
+		// .catch(err => {
+		// 	console.log(err);
+		// })
+	})
 
 	// NEW => SHOW ARTICLE CREATION FORM
 	// == user route ==
@@ -52,7 +59,7 @@ function articles (app) {
 		.then(article => {
 			res.redirect(`/users/${article.userId}/articles/${article._id}`)
 		}).catch(err => {
-			console.log(err.message)
+			console.log("Update Article" + err.message)
 		})
 	})
 
@@ -71,10 +78,10 @@ function articles (app) {
 	app.post('/users/:userId/articles', (req, res) => {
 		Article.create(req.body)
 		.then((article) => {
-			console.log(article)
+			console.log("Create Article " + article)
 			res.redirect(`/users/${article.userId}/articles/${article._id}`) // Redirect to articles/:id
 		}).catch((err) => {
-			console.log(err.message)
+			console.log("Create Article Error " + err.message)
 		})
 	})
 
@@ -92,7 +99,7 @@ function articles (app) {
 				res.redirect(`/users/${article.userId}`);
 			}
 		}).catch((err) => {
-			console.log(err.message);
+			console.log("Delete Article " + err.message);
 		})
 	})
 }

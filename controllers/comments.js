@@ -23,7 +23,7 @@ module.exports = function(app) {
 			res.status(200)
 			.send({comment: comment});
 		}).catch((err) => {
-			console.log(err.message);
+			console.log("Delete Comment: " + err.message);
 			res.status(400)
 			.send({err: err});
 		});

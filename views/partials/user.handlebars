@@ -1,0 +1,24 @@
+<div>
+	<h4>
+		<a href="/users/{{this.userId}}/articles/{{this._id}}">
+			USER: {{this.userName}}
+		</a>
+	</h4>
+
+	<h4>
+		INTEREST: {{this.userInterests}}
+	</h4>
+
+	<h4>
+		DESCRIPTION: {{this.description}}
+	</h4>
+
+		<form method="POST" action="/articles/{{this._id}}?_method=DELETE">
+			<p>
+				<button type="submit">Delete</button>
+				<button type="button" onclick="window.location.href='/articles/{{this._id}}/edit'">Edit</button>
+				<button type="button" onclick="window.location.href='/users/{{this.userId}}'">Back</button>
+			</p>
+		</form>
+	</p>
+</div>

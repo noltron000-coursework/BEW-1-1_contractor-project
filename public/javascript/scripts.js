@@ -42,8 +42,10 @@ function deleteComment() {
 }
 
 window.onload = function() {
-	document.getElementById("new-comment")
-	.addEventListener("submit", e => {
+	const newComment = document.getElementById("new-comment");
+
+	if (newComment) {
+		newComment.addEventListener("submit", e => {
 
 			// be verbose
 		console.log("");
@@ -107,6 +109,6 @@ window.onload = function() {
 			console.log("!!! ERROR FOUND !!!");
 			console.log(error);
 		});
-	});
+	});}
 	deleteComment();
 }

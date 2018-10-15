@@ -1,18 +1,16 @@
-<h1>Authors</h1>
-
+<h1>Users</h1>
+<a href="/users/new">New User</a>
 <div class="row">
-	<ul>
-		<h2>
-		{{#each users}}
-			<li>
+	{{#each users}}
+		<div class="col-sm-2">
+			<h3>
 				<a href="/users/{{this.id}}">
-					{{this.title}}
+					{{this.userName}}
 				</a>
-				<p>
-					<img src="https://image.tmdb.org/t/p/w500/{{this.poster_path}}" />
-				</p>
-			</li>
-		{{/each}}
-		</h2>
-	</ul>
+			</h3>
+			<h4>
+				{{this.userInterests}}
+			</h4>
+		</div>
+	{{/each}}
 </div>
