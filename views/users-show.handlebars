@@ -12,6 +12,11 @@
 	</div>
 </div>
 <div class="row">
+	<form method="POST" action="/users/{{user._id}}?_method=DELETE">
+			<p>
+				<button type="submit">Delete</button>
+			</p>
+		</form>
 	<div class="form-group text-center">
 		<button type="button" class="btn btn-primary" onclick="window.location.href='/users/{{user._id}}/articles/new'">Write Article</button>
 		<button type="button" class="btn" onclick="window.location.href='/users/{{user._id}}/edit'">Edit User</button>
