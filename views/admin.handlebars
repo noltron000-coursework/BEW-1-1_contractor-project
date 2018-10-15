@@ -10,17 +10,17 @@
 	</thead>
 	<tbody>
 		{{#each articles}}
-			<tr>
-				<th scope="row">{{this._id}}</th>
-				<td>{{this.title}}</td>
-				<td>{{this.description}}</td>
-				<td>
-					<form method="POST" action="/articles/{{this._id}}?_method=DELETE">
-						<button type="submit" class="btn" href="#" id="deleteArticle" data-article-id=${this._id}>Delete</button>
-						<input type="hidden" value="true" name="admin"/>
-					</form>
-				</td>
-			</tr>
+		<tr>
+			<th scope="row">{{this._id}}</th>
+			<td>{{this.title}}</td>
+			<td>{{this.description}}</td>
+			<td>
+				<form method="POST" action="/articles/{{this._id}}?_method=DELETE">
+					<button type="submit" class="btn" href="#" id="deleteArticle" data-article-id=${this._id}>Delete</button>
+					<input type="hidden" value="true" name="admin" />
+				</form>
+			</td>
+		</tr>
 		{{/each}}
 	</tbody>
 </table>
