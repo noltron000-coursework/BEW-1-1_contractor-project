@@ -2,7 +2,7 @@
 
 <div class="row">
 	<div class="col-sm-6 col-sm-offset-3">
-		<form method="POST" action="/articles/{{article._id}}?_method=PUT">
+		<form method="POST" action="users/{{userId}}/articles/{{article._id}}?_method=PUT">
 			{{> articles-form}}
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary">Save Article</button>

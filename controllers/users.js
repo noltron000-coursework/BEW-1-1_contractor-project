@@ -18,9 +18,23 @@ function users (app) {
 	});
 
 	// COMPLETE!
+	// SHOW USER
+	app.get('/users/:userId', (req, res) => {
+		User.findById(req.params.userId)
+		.then(user => {
+			res.render('users-show', {
+				user: user
+			});
+		}).catch((err) => {
+			res.status(400)
+			.send({ err: err });
+		});
+	});
+
+	// COMPLETE!
 	// NEW => SHOW USER CREATION FORM
 	app.get('/users/new', (req, res) => {
-		User.findById(req.params.id)
+		User.findById(req.params.userId)
 		.then(user => {
 			res.render('users-new', {
 				userId: req.params.userId,
@@ -44,33 +58,42 @@ function users (app) {
 		});
 	});
 
-	// COMPLETE!
-	// SHOW USER
-	app.get('/users/:userId', (req, res) => {
-		User.findById(req.params.userId)
-		.then(user => {
-			res.render('users-show', {
-				user: user
-			});
-		}).catch((err) => {
-			res.status(400)
-			.send({ err: err });
-		});
-	});
 
-	// FIXING...
-	// DELETE
-	app.delete('/user/:userId', function (req, res) {;
-		User.findByIdAndRemove(req.params.userId)
+	// UPDATE USER
+	app.put('/users/:userId', (req, res) => {
+		User.findByIdAndUpdate(req.params.userId, req.body)
 		.then(user => {
-			res.status(200)
-			.send({ user: user });
+			res.redirect(`/users/${user.userId}`)
 		}).catch((err) => {
-			console.log("Delete User " + err.message);
 			res.status(400)
 			.send({ err: err });
-		});
-	});
+		})
+	})
+
+	// EDIT => SHOW EDIT FORM FOR SINGLE USER
+	app.get('/users/:userId/edit', (req, res) => {
+		User.findById(req.params.userId, function(err, user) {
+			console.log("Edit User " + user);
+			res.render('users-edit', { user: user });
+		}).catch((err) => {
+			console.log(err);
+			res.status(400)
+			.send({ err: err });
+		})
+	})
+
+	// // FIXING...
+	// // DELETE
+	// app.delete('/user/:userId', function (req, res) {
+	// 	User.findByIdAndRemove(req.params.userId)
+	// 	.then(user => {
+	// 		res.status(200)
+	// 		.send({ user: user });
+	// 	}).catch((err) => {
+	// 		res.status(400)
+	// 		.send({ err: err });
+	// 	});
+	// });
 }
 
 
