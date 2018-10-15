@@ -1,20 +1,17 @@
-<!-- views/articles-show.handlebars -->
-
 <div class="row">
 	<div class="col-sm-6 col-sm-offset-3">
-		<h1>ARTICLE: {{article.title}}</h1>
-		<h2>TITLE: {{article.userName}}</h2>
-		<h3>RATING: {{article.userRating}}</h3>
-		<p>DESCRIPTION: {{article.description}}</p>
-		<p class="card-user">ID: {{article.userId}}</p>
-
+		<h1>Title: {{article.articleTitle}}</h1>
+		<h2>Author: {{article.userName}}</h2>
+		<p>Content: {{article.articleContent}}</p>
+		<div class="form-group text-center">
+			<button class="btn btn-primary" type="button" onclick="window.location.href='/articles/{{article._id}}/edit'">Edit</button>
+			<button class="btn" type="button" onclick="window.location.href='/users/{{article.userId}}'">Back</button>
+		</div>
 		<form method="POST" action="/articles/{{article._id}}?_method=DELETE">
-			<p>
-				<button type="submit">Delete</button>
-			</p>
+			<div class="form-group text-center">
+				<button class="btn" type="submit">Delete</button>
+			</div>
 		</form>
-		<button type="button" onclick="window.location.href='/articles/{{article._id}}/edit'">Edit</button>
-		<button type="button" onclick="window.location.href='/users/{{article.userId}}'">Back</button>
 		<hr />
 		{{> comment-form}}
 		<hr />

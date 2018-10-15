@@ -1,49 +1,39 @@
 const Article = require('../models/article');
 const Comment = require('../models/comment');
+const User = require('../models/user')
 
-// // USERDB DOESNT EXIST
-// const UserDB = require('userdb-promise');
-// const userdb = new UserDB('3a1d8db55135a8ae41b2314190591157');
+function articles (app) {
 
+	// UNECCESSARY ROUTE!
+	// INDEX => SHOW ALL ARTICLES
+	app.get
 
-
-function articles (app) {// OUR MOCK ARRAY OF PROJECTS
-let reviews = [
-  { title: "Great Review", movieTitle: "Batman II" },
-  { title: "Awesome Movie", movieTitle: "Titanic" }
-]
-	// INDEX => SHOW ALL ARTICLE
-	// COMMENTING OUT ARTICLES LANDING - SHOULD BE USERS LANDING
-	app.get('/articles', (req, res) => {
-		res.render('articles-index', { reviews: reviews });
-		// res.render('articles-index');
-		// Article.find()
-		// .then(articles => {
-		// 	res.render('articles-index', { articles: articles });
-		// })
-		// .catch(err => {
-		// 	console.log(err);
-		// })
-	})
-
+	// COMPLETED!
 	// NEW => SHOW ARTICLE CREATION FORM
-	// == user route ==
-	// /users/:id/articles/new
 	app.get('/users/:userId/articles/new', (req, res) => {
-		// // USERDB DOESNT EXIST
-		// const user = userdb.userInfo( req.params.userId )
-		// .then( user => {
-		// 	res.render('articles-new', { userId: req.params.userId, user: user }) //RES render?
-		// });
+		Article.findById(req.params.id)
+		.then(article => {
+			User.findById(req.params.userId)
+			.then(user =>{
+				res.render('articles-new', {
+					article: article,
+					user: user,
+					userId: req.params.userId
+				});
+			})
+		}).catch((err) => {
+			console.log(err);
+			res.status(400)
+			.send({ err: err });
+		});
 	});
 
+	// COMPLETED!
 	// SHOW SINGLE ARTICLE
-	// == user route ==
-	// /users/:id/articles/:id
 	app.get('/users/:userId/articles/:id', (req, res) => {
 		Article.findById(req.params.id).then(article => {
 			Comment.find({ articleId: req.params.id }).then(comments => {
-				res.render('articles-show', { article: article, comments: comments })
+				res.render('articles-show', { article: article, comments: comments, userId: req.params.userId })
 			})
 		}).catch((err) => {
 			// catch errors
@@ -51,10 +41,10 @@ let reviews = [
 		});
 	});
 
+	// WORK IN PROGRESS...
 	// UPDATE SINGLE ARTICLE
-	// == user route ==
 	// /users/:id/articles/:id
-	app.put('/articles/:id', (req, res) => {
+	app.put('users/:userId/articles/:id', (req, res) => {
 		Article.findByIdAndUpdate(req.params.id, req.body)
 		.then(article => {
 			res.redirect(`/users/${article.userId}/articles/${article._id}`)
@@ -63,6 +53,7 @@ let reviews = [
 		})
 	})
 
+	// WORK IN PROGRESS...
 	// EDIT => SHOW EDIT FORM FOR SINGLE ARTICLE
 	// == user route ==
 	// /users/:id/articles/:id/edit
@@ -76,10 +67,14 @@ let reviews = [
 	// == user route ==
 	// /users/:id/articles/new
 	app.post('/users/:userId/articles', (req, res) => {
+		console.log("CREATE: REQUEST")
+		console.log(req.body);
+		console.log("\n")
 		Article.create(req.body)
 		.then((article) => {
 			console.log("Create Article " + article)
-			res.redirect(`/users/${article.userId}/articles/${article._id}`) // Redirect to articles/:id
+			console.log(`/users/${article.userId}/articles/${article.id}`);
+			res.redirect(`/users/${article.userId}/articles/${article.id}`) // Redirect to articles/:id
 		}).catch((err) => {
 			console.log("Create Article Error " + err.message)
 		})

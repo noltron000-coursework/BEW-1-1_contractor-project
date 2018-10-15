@@ -1,7 +1,7 @@
 <div>
 	<h4>
 		<a href="/users/{{this.userId}}/articles/{{this._id}}">
-			TITLE: {{this.title}}
+			TITLE: {{this.articleTitle}}
 		</a>
 	</h4>
 
@@ -10,7 +10,7 @@
 	</h4>
 
 	<h4>
-		ARTICLE: {{this.description}}
+		ARTICLE: {{this.articleContent}}
 	</h4>
 
 		<form method="POST" action="/articles/{{this._id}}?_method=DELETE">

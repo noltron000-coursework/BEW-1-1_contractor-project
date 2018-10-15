@@ -2,9 +2,14 @@
 	<div class="col-sm-6 col-sm-offset-3">
 		<form method="POST" action="/users/{{user._id}}?_method=PUT">
 			{{> users-form}}
-			<div class="form-group">
+			<div class="form-group text-center">
 				<button type="submit" class="btn btn-primary">Update User</button>
 				<button type="button" class="btn" onclick="window.location.href='/'">Cancel</button>
+			</div>
+		</form>
+		<form method="POST" action="/users/{{user._id}}?_method=DELETE">
+			<div class="form-group text-center">
+				<button type="submit" class="btn">Delete User</button>
 			</div>
 		</form>
 	</div>

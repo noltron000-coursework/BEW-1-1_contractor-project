@@ -1,34 +1,17 @@
-<fieldset>
-	<legend>Edit Article for {{user.title}}</legend>
-	<!-- TITLE -->
-	<div class="form-group">
-		<label for="article-title">Title</label><br>
-		<input class="form-control" id="article-title" type="text" name="title" value="{{article.title}}" />
-	</div>
+<!-- USERNAME -->
+<div class="form-group">
+	<label for="user-name">Author</label><br>
+	<input disabled class="form-control" id="user-name" type="text" name="userName" value="{{user.userName}}" />
+</div>
 
-	<!-- USER NAME -->
-	<div class="form-group">
-		<label for="user-name">User Name</label><br>
-		<input class="form-control" id="user-name" type="text" name="userName" value="{{article.userName}}" />
-	</div>
+<!-- TITLE -->
+<div class="form-group">
+	<label for="article-title">Title</label><br>
+	<input class="form-control" id="article-title" type="text" name="articleTitle" value="{{article.articleTitle}}" />
+</div>
 
-	<!-- USER RATING -->
-	<div class="form-group">
-		<label for="user-rating">User Rating</label><br>
-		<select class="form-control" id="user-rating" type="" name="userRating" value="{{article.userRating}}" />
-			<option value="N/A">- Not Any -</option>
-			<option value="0">0: ☆☆☆☆☆</option>
-			<option value="1">1: ★☆☆☆☆</option>
-			<option value="2">2: ★★☆☆☆</option>
-			<option value="3">3: ★★★☆☆</option>
-			<option value="4">4: ★★★★☆</option>
-			<option value="5">5: ★★★★★</option>
-		</select>
-	</div>
-
-	<!-- DESCRIPTION -->
-	<div class="form-group">
-		<label for="article-description">Description</label><br>
-		<textarea class="form-control"id="article-description" name="description" rows="10">{{article.description}}</textarea>
-	</div>
-</fieldset>
+<!-- ARTICLE CONTENT -->
+<div class="form-group">
+	<label for="article-content">Content</label><br>
+	<textarea class="form-control"id="article-content" name="articleContent" rows="10" value="{{article.articleContent}}">{{article.articleContent}}</textarea>
+</div>

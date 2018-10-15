@@ -1,12 +1,13 @@
-<!-- views/articles-new.handlebars -->
-
 <div class="row">
 	<div class="col-sm-6 col-sm-offset-3">
-		<form method="POST" action="/users/{{userId}}/articles">
-			{{> articles-form}}
+		<form method="POST" action="/users/{{userId}}/articles/">
+			<fieldset>
+				<legend>Create New Article</legend>
+				{{> articles-form}}
+			</fieldset>
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary">Save Article</button>
-				<button type="button" onclick="window.location.href='/'">Cancel</button>
+				<button type="button" class="btn" onclick="window.location.href='/users/{{userId}}'">Cancel</button>
 				<input type="hidden" name="userId" value="{{userId}}">
 			</div>
 		</form>
